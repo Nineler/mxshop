@@ -13,14 +13,12 @@ import (
 	"google.golang.org/grpc/status"
 	"gorm.io/gorm"
 
-	"mxshop/user_srv/global"
-	"mxshop/user_srv/model"
-	"mxshop/user_srv/proto"
+	"mxshop_srvs/user_srv/global"
+	"mxshop_srvs/user_srv/model"
+	"mxshop_srvs/user_srv/proto"
 )
 
-type UserServer struct {
-	proto.UnimplementedUserServer
-}
+type UserServer struct{}
 
 func ModelToRsponse(user model.User) proto.UserInfoResponse {
 	//在grpc的message中字段有默认值，你不能随便赋值nil进去，容易出错
@@ -64,7 +62,7 @@ func (s *UserServer) GetUserList(ctx context.Context, req *proto.PageInfo) (*pro
 	if result.Error != nil {
 		return nil, result.Error
 	}
-
+	fmt.Println("用户列表")
 	rsp := &proto.UserListResponse{}
 	rsp.Total = int32(result.RowsAffected)
 

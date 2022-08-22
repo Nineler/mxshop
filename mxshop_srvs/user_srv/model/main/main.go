@@ -12,7 +12,7 @@ import (
 	"gorm.io/gorm/schema"
 	"io"
 	"log"
-	"mxshop/user_srv/model"
+	"mxshop_srvs/user_srv/model"
 	"os"
 	"time"
 )
@@ -24,7 +24,7 @@ func genMd5(code string) string {
 }
 
 func main() {
-	dsn := "root:root@tcp(192.168.31.147:3306)/mxshop_user_srv?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:root@tcp(192.168.0.104:3306)/mxshop_user_srv?charset=utf8mb4&parseTime=True&loc=Local"
 
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
@@ -68,7 +68,7 @@ func main() {
 	//_ = db.AutoMigrate(&model.User{}) //此处应该有sql语句
 
 	//fmt.Println(genMd5("xxxxx_123456"))
-	//将用户的密码变一下 随机字符串+ 用户密码
+	//将用户的密码变一下 随机字符串+用户密码
 	//暴力破解 123456 111111 000000 彩虹表 盐值
 	//e10adc3949ba59abbe56e057f20f883e
 	//e10adc3949ba59abbe56e057f20f883e
